@@ -1,26 +1,30 @@
 package golangunittest
 
 import (
-	"log"
 	"testing"
 
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/assert"
+	_ "github.com/stretchr/testify/assert"
 )
 
 func HelloWorld() string {
 	return "Hello World!"
 }
 
-func TestHelloWorld(t *testing.T) {
+func TestSkipTest(t *testing.T) {
+
+	if condition := true; condition {
+		t.Skip()
+	}
 
 	result := HelloWorld()
 
-	// assert.Equal(t, "Hello World", result) //assert akan memanggil fail (baris code selanjutnya akan dieksekusi)
-	require.Equal(t, "Hello World", result) //require akan memanggil fatal (baris code selanjutnya tidak dieksekusi)
+	assert.Equal(t, "Hello World!", result)
+}
 
-	log.Println("RUN APPLICATION")
-	log.Println("RUN APPLICATION")
-	log.Println("RUN APPLICATION")
-	log.Println("RUN APPLICATION")
+func TestNextTest(t *testing.T) {
 
+	result := HelloWorld()
+
+	assert.Equal(t, "Hello World!", result)
 }
