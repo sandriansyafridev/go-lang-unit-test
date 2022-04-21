@@ -1,3 +1,3 @@
-module github.com/sandriansyafridev/go-lang-unit-test
+module golangunittest
 
 go 1.16
