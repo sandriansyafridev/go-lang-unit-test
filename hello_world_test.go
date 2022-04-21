@@ -7,20 +7,30 @@ func Hello(name string) string {
 
 }
 
+type Tests struct {
+	Name    string
+	Request string
+}
+
 func BenchmarkHello(b *testing.B) {
 
-	b.Run("Sandrian", func(b *testing.B) {
+	tests := []Tests{
+		{
+			Name:    "Sandrian",
+			Request: "sandrian",
+		},
+		{
+			Name:    "Hafid",
+			Request: "hafid",
+		},
+	}
 
-		for i := 0; i < b.N; i++ {
-			Hello("rian")
-		}
-	})
-
-	b.Run("Hafid", func(b *testing.B) {
-
-		for i := 0; i < b.N; i++ {
-			Hello("Hafid")
-		}
-	})
+	for _, test := range tests {
+		b.Run(test.Name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				Hello(test.Request)
+			}
+		})
+	}
 
 }
