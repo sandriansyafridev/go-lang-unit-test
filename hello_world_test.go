@@ -10,9 +10,9 @@ func HelloWorld() string {
 }
 
 func TestHelloWorld(t *testing.T) {
-	if result := HelloWorld(); result != "Hello World!" {
-		t.Fail() // jika test gagal atau fail maka baris code selanjutnya akan tetap dieksekusi
-		// t.FailNow() //jika test gagal atau fail maka baris code selanjutya tidak akan dieksekusi
+	if result := HelloWorld(); result != "Hello World" {
+		// t.Error("Return value must be 'Hello World!'") // jika test gagal atau fail maka baris code selanjutnya akan tetap dieksekusi
+		t.Fatal("Return value must be 'Hello World'") //jika test gagal atau fail maka baris code selanjutya tidak akan dieksekusi
 	}
 
 	log.Println("RUNNING APP")
