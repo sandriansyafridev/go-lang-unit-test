@@ -11,18 +11,30 @@ func DisplayName(s string) string {
 	return "Hello " + s
 }
 
+type Test struct {
+	Name     string
+	Request  string
+	Expected string
+}
+
 func TestSubTest(t *testing.T) {
 
-	t.Run("Sandrian", func(t *testing.T) {
-		result := DisplayName("Sandrian")
+	tests := []Test{
+		{Name: "Sandrian", Request: "Sandrian", Expected: "Hello Sandrian"},
+		{Name: "Hafid", Request: "Hafid", Expected: "Hi Hafid"},
+		{Name: "Fikri", Request: "Fikri", Expected: "Hello Fikri!"},
+	}
 
-		assert.Equal(t, "Hello Sandrian!", result)
-	})
+	for _, test := range tests {
 
-	t.Run("Hafid", func(t *testing.T) {
-		result := DisplayName("Hafid")
+		t.Run(test.Name, func(t *testing.T) {
 
-		assert.Equal(t, "Hello Hafid", result)
-	})
+			result := DisplayName(test.Request)
+
+			assert.Equal(t, test.Expected, result)
+
+		})
+
+	}
 
 }
