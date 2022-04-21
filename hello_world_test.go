@@ -7,18 +7,20 @@ func Hello(name string) string {
 
 }
 
-func BenchmarkHelloRian(b *testing.B) {
+func BenchmarkHello(b *testing.B) {
 
-	for i := 0; i < b.N; i++ {
-		Hello("rian")
-	}
+	b.Run("Sandrian", func(b *testing.B) {
 
-}
+		for i := 0; i < b.N; i++ {
+			Hello("rian")
+		}
+	})
 
-func BenchmarkHelloSandrian(b *testing.B) {
+	b.Run("Hafid", func(b *testing.B) {
 
-	for i := 0; i < b.N; i++ {
-		Hello("SANDRIAN SYAFRI")
-	}
+		for i := 0; i < b.N; i++ {
+			Hello("Hafid")
+		}
+	})
 
 }
