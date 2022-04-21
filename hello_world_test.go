@@ -7,24 +7,22 @@ import (
 	_ "github.com/stretchr/testify/assert"
 )
 
-func HelloWorld() string {
-	return "Hello World!"
+func DisplayName(s string) string {
+	return "Hello " + s
 }
 
-func TestSkipTest(t *testing.T) {
+func TestSubTest(t *testing.T) {
 
-	if condition := true; condition {
-		t.Skip()
-	}
+	t.Run("Sandrian", func(t *testing.T) {
+		result := DisplayName("Sandrian")
 
-	result := HelloWorld()
+		assert.Equal(t, "Hello Sandrian!", result)
+	})
 
-	assert.Equal(t, "Hello World!", result)
-}
+	t.Run("Hafid", func(t *testing.T) {
+		result := DisplayName("Hafid")
 
-func TestNextTest(t *testing.T) {
+		assert.Equal(t, "Hello Hafid", result)
+	})
 
-	result := HelloWorld()
-
-	assert.Equal(t, "Hello World!", result)
 }
